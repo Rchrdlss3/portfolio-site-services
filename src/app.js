@@ -15,7 +15,7 @@ async function connect(){
     }
 }
 const corsOptions = {
-    origin: ['http://localhost:8000','http://localhost:3000','http://localhost:3001']
+    origin: ['http://localhost:8000','http://localhost:3000','http://localhost:3001','https://rchrdlss3.github.io/portfolio','https://rchrdlss3.github.io']
 }
 
 app.get('/', (req, res) => {
