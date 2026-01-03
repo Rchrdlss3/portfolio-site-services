@@ -5,8 +5,6 @@ const app = express()
 const cors = require('cors')
 const visitorRouter = require("./routes/visitorRoutes");
 
-
-
 async function connect(){
     try {
         await mongoose.connect(process.env.DATABASE_URL)

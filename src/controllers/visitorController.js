@@ -17,6 +17,7 @@ module.exports = {
     },
     post: async (req,res) => {
         const visitor = req.body;
+        console.log(req.body)
         try {
             if (await visitorSchema.findOne({$or: [{email : visitor.email}, {id : visitor.id}]})) {
                 return res.status(409).json('Visitor already exists')
@@ -35,7 +36,11 @@ module.exports = {
     put: async (req,res) => {
         const visitor = req.body;
         try {
-            const updatedVisitor = await visitorSchema.findOneAndUpdate({$or: [{email : visitor.email}, {id : visitor.id}]},visitor,{upsert:true, new: true})
+            const updatedVisitor = await visitorSchema.findOneAndUpdate(
+                {$or: [{email : visitor.email}, {id : visitor.id}]},
+                visitor,
+                {upsert:true, new: true, omitUndefined: true}
+            )
             if(!updatedVisitor) {
                 return res.status(500).json({message: 'Error with creating of finding user'});
             }
